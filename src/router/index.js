@@ -1,23 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Orders from '../views/Orders.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/pedidos',
-    name: 'pedidos',
-    component: Orders
+    name: 'order-list',
+    meta: {
+      title: 'Lista de Pedidos'
+    },
+    component: () => import('@/views/OrderList.vue')
   },
-  {
-    path: '/pedido/:orderId',
-    name: 'pedido',
-    component: () => import('../views/OrderDetail.vue')
-  }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 
